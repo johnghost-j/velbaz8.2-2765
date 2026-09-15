@@ -55,6 +55,17 @@ export interface PopupConfig {
   redirectTo?: string;
   // product_preview (IA) — description du produit à visualiser
   description?: string;
+  // printify_design — design multi-calques envoyé tel quel à
+  // POST /companies/:id/printify/create-product
+  design?: {
+    title?: string;
+    description?: string;
+    price?: number;
+    blueprintId?: number;
+    printProviderId?: number;
+    printAreas?: { position: string; layers: any[] }[];
+    [k: string]: any;
+  };
 }
 
 /** True when the popup blocks the AI and requires an explicit user response. */
@@ -72,6 +83,8 @@ interface AIPopupProps {
   onSaveSecrets?: (values: Record<string, string>) => Promise<boolean>;
   /** Delete previously-stored secret keys; returns true on success. */
   onDeleteSecrets?: (keys: string[]) => Promise<boolean>;
+  /** Create the printify_design popup's design as a real Printify product. */
+  onCreatePrintifyProduct?: (design: NonNullable<PopupConfig['design']>) => Promise<{ ok: boolean; message: string }>;
 }
 
 /* ─── Shared shell ─── */

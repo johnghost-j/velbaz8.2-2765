@@ -12288,7 +12288,9 @@ app.get('/companies/:id/products', async (c) => {
   const productIds = productList.map(p => p.id);
   const images = productIds.length > 0 ? await db.select().from(schema.productImages).where(sql`${schema.productImages.productId} IN (${sql.join(productIds.map(id => sql`${id}`), sql`, `)})`) : [];
   const imageMap = new Map<string, any[]>();
-  for (const img of images) { const arr = imageMap.get(img.productId) || []; arr.push(img); imageMap.set(img.productId, arr); }
+  // `product_images.product_id` est nullable (une image peut appartenir à
+  // l'entreprise sans produit) : une image sans produit n'a pas de bucket.
+  for (const img of images) { if (!img.productId) continue; const arr = imageMap.get(img.productId) || []; arr.push(img); imageMap.set(img.productId, arr); }
   return c.json({ products: productList.map(p => ({ ...p, images: imageMap.get(p.id) || [] })) });
 });
 

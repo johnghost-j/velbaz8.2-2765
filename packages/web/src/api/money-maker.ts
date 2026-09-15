@@ -1220,7 +1220,13 @@ Réponds en JSON STRICT uniquement:
 }
 
 /** Envoie un brouillon existant (validation humaine ou auto). */
-export async function sendEmailDraft(userId: string, emailId: string, fromNameOverride?: string) {
+/**
+ * Envoie un brouillon. Le type de retour est explicite : les quatre chemins de
+ * sortie (non possédé, déjà envoyé, sans destinataire, envoi réel) renvoyaient
+ * des formes différentes, si bien que l'appelant ne pouvait pas lire `.error`
+ * sans que TypeScript refuse l'accès sur l'une des branches.
+ */
+export async function sendEmailDraft(userId: string, emailId: string, fromNameOverride?: string): Promise<{ ok: boolean; error?: string; alreadySent?: boolean; skipped?: boolean; id?: string }> {
   const owned = await _ownedEmail(userId, emailId);
   if (!owned) return { ok: false, error: 'Email introuvable' };
   const { row, company } = owned;

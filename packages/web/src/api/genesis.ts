@@ -1637,7 +1637,7 @@ async function runGenesisInner(opts: RunGenesisOptions): Promise<GenesisResult> 
           ? basePrompt
           : await call({
               model: THINK_MODEL, system: P4B_SYSTEM,
-              prompt: `${nameLock}\n\n${TASTE_LOCK}\n\n${pattern}\n\n${palette}${banned}${userDirection ? `\n\nDEMANDE EXPLICITE DU CLIENT — ELLE PRIME SUR TOUT LE RESTE, APPLIQUE-LA LITTÉRALEMENT :\n${userDirection}` : ""}\n\nLes compositions précédentes ont été REFUSÉES par le directeur artistique et les retouches successives ne progressaient plus. Il faut CHANGER DE PISTE, pas retoucher.\n\nPISTES DÉJÀ REFUSÉES (à ne pas reproduire) :\n${mockups.map(m => `- (${m.score}/10) ${m.prompt.slice(0, 220)}`).join("\n")}\n\nDERNIER VERDICT :\n${(mockupRef.current as GenesisMockup | null)?.verdict?.slice(0, 1200) ?? ""}\n\nSCENE GRAPH :\n${sceneGraphRaw.slice(0, 5000)}\n\nÉCRIS UN NOUVEAU PROMPT COMPLET, autoportant, structure 1→7, sur une piste visuellement DIFFÉRENTE des précédentes (autre mise en page, autre rapport entre le mot-titre et le sujet photographié).`,
+              prompt: `${nameLock}\n\n${TASTE_LOCK}\n\n${pattern}\n\n${palette}${banned}${userDirection ? `\n\nDEMANDE EXPLICITE DU CLIENT — ELLE PRIME SUR TOUT LE RESTE, APPLIQUE-LA LITTÉRALEMENT :\n${userDirection}` : ""}\n\nLes compositions précédentes ont été REFUSÉES par le directeur artistique et les retouches successives ne progressaient plus. Il faut CHANGER DE PISTE, pas retoucher.\n\nPISTES DÉJÀ REFUSÉES (à ne pas reproduire) :\n${mockups.map(m => `- (${m.score}/10) ${m.prompt.slice(0, 220)}`).join("\n")}\n\nDERNIER VERDICT :\n${mockupRef.current?.verdict?.slice(0, 1200) ?? ""}\n\nSCENE GRAPH :\n${sceneGraphRaw.slice(0, 5000)}\n\nÉCRIS UN NOUVEAU PROMPT COMPLET, autoportant, structure 1→7, sur une piste visuellement DIFFÉRENTE des précédentes (autre mise en page, autre rapport entre le mot-titre et le sujet photographié).`,
               maxTokens: 900, temperature: 0.95,
             }).then(t => t.trim() || basePrompt);
 
@@ -1700,7 +1700,7 @@ async function runGenesisInner(opts: RunGenesisOptions): Promise<GenesisResult> 
 
       if (!accepted) {
         degraded = true;
-        weaknesses.push(`maquette d'écran : seuil design non atteint après ${mockups.length} rendus (meilleur ${scoreLabel((mockupRef.current as GenesisMockup | null)?.score)}). ${((mockupRef.current as GenesisMockup | null)?.fixes ?? []).join(" · ")}`);
+        weaknesses.push(`maquette d'écran : seuil design non atteint après ${mockups.length} rendus (meilleur ${scoreLabel(mockupRef.current?.score)}). ${(mockupRef.current?.fixes ?? []).join(" · ")}`);
         emit({ type: "note", text: "Composition d'ensemble retenue parmi les pistes explorées." });
       }
 
@@ -1708,7 +1708,7 @@ async function runGenesisInner(opts: RunGenesisOptions): Promise<GenesisResult> 
       // La maquette retenue n'est presque jamais celle prévue par le Scene
       // Graph : on reporte la direction réellement retenue DANS le Scene Graph
       // pour que les sections suivantes ne continuent pas sur l'ancienne idée.
-      const kept = mockupRef.current as GenesisMockup | null;
+      const kept = mockupRef.current;
       if (kept && !kept.accepted) {
         // La maquette conservée porte le verdict REGENERER : ce n'est PAS une
         // direction validée. On ne réécrit pas le Scene Graph dessus (sinon le
@@ -1840,16 +1840,20 @@ async function runGenesisInner(opts: RunGenesisOptions): Promise<GenesisResult> 
     return partial;
   }
 
+  // La phase maquette est terminée : on figé la maquette retenue dans une
+  // constante locale, la suite ne fait plus que la lire.
+  const keptMockup = mockupRef.current;
+
   // ── Design system verrouillé, relevé sur la maquette retenue ─────────────
   // Une passe de vision sur l'image que l'utilisateur a cliquée (ou que le juge
   // a retenue). Le résultat redescend en Phase 8 et dans le brief de
   // construction : c'est ce qui fait que TOUTES les pages partagent la même
   // palette, la même typo et les mêmes composants que l'image choisie.
   let designSystem = "";
-  if (mockupRef.current?.url) {
-    designSystem = await extractDesignSystem(mockupRef.current.url, brandName);
+  if (keptMockup?.url) {
+    designSystem = await extractDesignSystem(keptMockup.url, brandName);
     if (designSystem) {
-      emit({ type: "note", text: `Design system relevé sur la maquette retenue${mockupRef.current.chosenByUser ? " (celle que tu as choisie)" : ""} — il s'applique à chaque page du site.` });
+      emit({ type: "note", text: `Design system relevé sur la maquette retenue${keptMockup.chosenByUser ? " (celle que tu as choisie)" : ""} — il s'applique à chaque page du site.` });
     } else {
       emit({ type: "note", text: "Design system non relevé sur la maquette (passe de vision en échec) — la spec reste guidée par la description de la maquette." });
     }
@@ -1865,7 +1869,7 @@ ${designSystem}`
   const segmentation = await phase(7, "Décision de découpage", async () => {
     const raw = await call({
       model: THINK_MODEL, system: P7_SYSTEM,
-      prompt: `SCENE GRAPH :\n${sceneGraphRaw}${mockupRef.current ? `\n\nUne maquette d'écran validée existe : chaque découpe doit produire un élément cohérent avec elle (même lumière, même angle, même échelle relative).` : ""}`,
+      prompt: `SCENE GRAPH :\n${sceneGraphRaw}${keptMockup ? `\n\nUne maquette d'écran validée existe : chaque découpe doit produire un élément cohérent avec elle (même lumière, même angle, même échelle relative).` : ""}`,
       maxTokens: 2000, temperature: 0.3,
     });
     let cut: any = null;
@@ -1922,13 +1926,13 @@ ${assetIndex}
 PHASE 7 — DÉCOUPAGE :
 ${segmentation}
 
-${mockupRef.current ? `MAQUETTE D'ÉCRAN DE RÉFÉRENCE (déjà validée par le directeur artistique, score ${mockupRef.current.score}/10) :
-Identifiant : asset://${runId}/__mockup/${mockupRef.current.attempt}
+${keptMockup ? `MAQUETTE D'ÉCRAN DE RÉFÉRENCE (déjà validée par le directeur artistique, score ${keptMockup.score}/10) :
+Identifiant : asset://${runId}/__mockup/${keptMockup.attempt}
 Description de la composition rendue :
-${mockupRef.current.prompt}
+${keptMockup.prompt}
 
 Verdict du directeur artistique :
-${mockupRef.current.verdict.slice(0, 1500)}
+${keptMockup.verdict.slice(0, 1500)}
 
 RÈGLE ABSOLUE : la page construite doit REPRODUIRE cette maquette — même patron
 de composition, même géométrie, même cadrage, même palette, même échelle
@@ -1947,7 +1951,7 @@ Compile maintenant la spec de précision finale.`,
 
   const result: GenesisResult = {
     runId, brief, brandName, brandIdentity, pendingFixes, positioning, sensory, association, interaction, sceneGraph,
-    assetPlan, assets, critiques, segmentation, designSystem, spec: specFull, mockups, mockup: mockupRef.current, phases,
+    assetPlan, assets, critiques, segmentation, designSystem, spec: specFull, mockups, mockup: keptMockup, phases,
     degraded, weaknesses, durationMs: Date.now() - t0,
   };
   emit({ type: "done", runId, result });

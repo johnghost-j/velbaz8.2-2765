@@ -9209,6 +9209,19 @@ export default function Chat() {
                   try { await api.companies.secrets.delete(projectId, keys); return true; }
                   catch { return false; }
                 }}
+                // Le bouton « Create on Printify » du pop-up printify_design
+                // n'était relié à rien : la prop n'était pas passée, donc
+                // handleCreate sortait immédiatement et le clic ne faisait rien.
+                onCreatePrintifyProduct={async (design) => {
+                  if (!projectId) return { ok: false, message: 'Aucun projet actif' };
+                  try {
+                    const r: any = await api.companies.printify.createProduct(projectId, design);
+                    if (r?.error) return { ok: false, message: String(r.error) };
+                    return { ok: true, message: `Produit créé (Printify ${r?.printifyProductId || '?'})` };
+                  } catch (e: any) {
+                    return { ok: false, message: e?.message || 'Échec de la création' };
+                  }
+                }}
               />
             )}
 
