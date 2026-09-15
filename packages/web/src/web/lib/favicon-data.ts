@@ -1,0 +1,19 @@
+/**
+ * Les deux icônes d'onglet encodées en data: URI (PNG 32x32).
+ *
+ * Pourquoi en dur dans le JS et pas des URL vers /favicon-32.png : quand
+ * l'onglet est en arrière-plan, le navigateur met les requêtes réseau en
+ * attente, donc l'icône ne changeait qu'au retour sur le site. Un data: URI
+ * ne demande aucun fetch → la bascule est immédiate, onglet actif ou pas.
+ *
+ * Régénérés depuis packages/web/public/favicon-32.png et
+ * packages/web/public/favicon-32-dark.png (même logo, un noir, un blanc).
+ */
+
+/** V noir — pour un navigateur en thème clair. */
+export const FAVICON_LIGHT =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAACYktHRAAAqo0jMgAAAAd0SU1FB+oJAhA1AGIFWXgAAAGvSURBVEjH7dM/aBRBFMfxz26CiYpFCotgEFIoNjbpUopYiMRWwc5OBSubNAFDBG2MGLDwH6S0lZAiEC1UEMFCwcqIYEA0yMlpY+7cHYvcJTu7K9z1edvsvvn9vm/ezFt2I+lDO2rCgFQilUolXlmvEw5Ka7L7LWrb1NLS1pZpOlGVpSbdMloDuOKPIN9+gsf2lkXjbvruk7GKfdKXkv29I7FkxCUf5IK1CuCglZL9l3NFwZAzVrUEueCjQ5F9wJysYM8FC/bsCI5Z1NyuUAVMaZTqv3G4KLhRWo4B496W1humiqfOcKnjIGy/D5s2UfgmuG85BqQVwE6cdyFaS7xwRxYDqtPYRRw3bV8BmNhw3bd4cKqAbgsHzDga7Sez4HksrhvaruWis5E9seJelPkvIGDSteJdS6yb1SiL09KhdREjZoxF3bfc9rparQ6QS1x2qpR/6lHNbg3WAk66aiDKrZnzu1fAkNPWfZZ3/o0g99A7egEkMk/Md4yhc6TBJr0BeOaun3qO+BoTX8360bu9fAtt8172Y99qIdcd52UP+rNvAZZs+CuXWdXsF7Ab/AMdN7UVX/aOyQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyNi0wOS0wMlQxNjo1MzowMCswMDowMIAErSYAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjYtMDktMDJUMTY6NTM6MDArMDA6MDDxWRWaAAAAKHRFWHRkYXRlOnRpbWVzdGFtcAAyMDI2LTA5LTAyVDE2OjUzOjAwKzAwOjAwpkw0RQAAAABJRU5ErkJggg==';
+
+/** V blanc — pour un navigateur en thème sombre. */
+export const FAVICON_DARK =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAACYktHRAAAqo0jMgAAAAd0SU1FB+oJAhA1AGIFWXgAAAHuSURBVEjH7ZM/aBRBFIe/3TuSqFiksAgGIYViY5MupYiFSGwV7OxUsLJJEzBE0MaIAQv/QUpbkRSBaKGCCBYKVkYED0SDnJw25s7bz+Ju93Zn966xsXCmuL2Z9/t+b968gf8jAkdvk0VMMUuNmIiYmJiIFzQAw1k3Tr/TIe5xzY47tm3bsWPXlkfNBfRm7JzXnbKMvegvNcmmPnBXLnsRZ7zmVz84XZLP+SmQv/VglqOIk573nYm6VQLscyOQ//B0Xy7iuCfdtK0m6nv3mz9YzWW7OXmirjrWr5J42DVbmUMZMG8z8H/lgazM4tVguwiY8XWw33R+cEMxMBFcfh8MwAQLzBZaRe6wnnZIDxCXAIOfM5wNOusZN+lG2ULMAFZCcIQFduf8I7a5wpd8aBUgPeBeFjlUSL/LKk+LwfWKB5BKznGqII/Y4HZ6+elLiSsBAnNcZqwgb7BEMwyuU/UcZZJFpgunb3ODl4O/+RqEgISICxwP1h9xvyLbygwSjnGJWmFti2V+hu7DAOOcoMFHEiRBJOEeb/I1jjJRCIjo8pCVvlDSB7HTcy6Xq5zBE27xvaq3iv2cB+T9P7PEt7JTGVidQYcVnocSS+cOAUkWv87dUW7lKkTUgcds85uELpu0qmXDIcPtRg7/Tv5vjT82HY5lqxjWswAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyNi0wOS0wMlQxNjo1MzowMCswMDowMIAErSYAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjYtMDktMDJUMTY6NTM6MDArMDA6MDDxWRWaAAAAKHRFWHRkYXRlOnRpbWVzdGFtcAAyMDI2LTA5LTAyVDE2OjUzOjAwKzAwOjAwpkw0RQAAAABJRU5ErkJggg==';

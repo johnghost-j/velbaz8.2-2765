@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Keep private/app-only areas out of the index
+Disallow: /dashboard
+Disallow: /settings
+Disallow: /editor
+Disallow: /admin
+Disallow: /accept-invite
+Disallow: /reset-password
+Disallow: /forgot-password
+
+Sitemap: https://velbaz.app/sitemap.xml

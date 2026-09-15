@@ -1,0 +1,2205 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+@custom-variant light (&:is(.light *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: #1A1A1A;
+  --foreground: #E8E8E8;
+  --card: #222222;
+  --card-foreground: #E8E8E8;
+  --popover: #222222;
+  --popover-foreground: #E8E8E8;
+  --primary: #E8E8E8;
+  --primary-foreground: #1A1A1A;
+  --secondary: #252525;
+  --secondary-foreground: #E8E8E8;
+  --muted: #252525;
+  --muted-foreground: #777777;
+  --accent: #E8E8E8;
+  --accent-foreground: #1A1A1A;
+  --destructive: #EF4444;
+  --border: #333333;
+  --input: #333333;
+  --ring: #555555;
+  --chart-1: #4EAADC;
+  --chart-2: #3B82F6;
+  --chart-3: #8B5CF6;
+  --chart-4: #10B981;
+  --chart-5: #F59E0B;
+  --sidebar: #141414;
+  --sidebar-foreground: #E8E8E8;
+  --sidebar-primary: #E8E8E8;
+  --sidebar-primary-foreground: #141414;
+  --sidebar-accent: #252525;
+  --sidebar-accent-foreground: #E8E8E8;
+  --sidebar-border: #2A2A2A;
+  --sidebar-ring: #555555;
+  --active: #4EAADC;
+
+  /* Semantic surface tokens (dark defaults) */
+  --surface-0: #1A1A1A;
+  --surface-1: #1E1E1E;
+  --surface-2: #222222;
+  --surface-3: #252525;
+  --surface-4: #2A2A2A;
+  --surface-5: #282828;
+  --surface-hover: #272727;
+  --border-subtle: #2A2A2A;
+  --border-default: #333333;
+  --border-hover: #444444;
+  --text-primary: #E8E8E8;
+  --text-secondary: #dddddd;
+  --text-muted: #999999;
+  --text-faint: #777777;
+  --text-dim: #666666;
+  --text-ghost: #555555;
+  --text-inverse: #1A1A1A;
+  --btn-primary-bg: #E8E8E8;
+  --btn-primary-fg: #1A1A1A;
+  --btn-primary-hover: #FFFFFF;
+  --teal: #4EAADC;
+  --teal-bg: #4EAADC15;
+  --teal-subtle: #4EAADC33;
+  --blue-accent: #4EAADC;
+  --red-subtle-bg: #2a1a1a;
+  --red-subtle-border: #ff6b6b33;
+  --red-text: #ff6b6b;
+  --green-subtle-bg: #1A2A1A;
+  --green-subtle-border: #2A3A2A;
+  --green-text: #4ade80;
+  --teal-subtle-bg: #1A2430;
+  --teal-subtle-border: #2A3644;
+  --teal-inner: #1E2A36;
+  --scrollbar-thumb: #333;
+  --scrollbar-thumb-hover: #444;
+  --skeleton-bg: #252525;
+  --shimmer: rgba(255,255,255,0.03);
+  --cursor-color: #4EAADC;
+  --overlay-bg: rgba(0,0,0,0.5);
+}
+
+/* ===== LIGHT THEME ===== */
+:root[data-theme="light"] {
+  --background: #FFFFFF;
+  --foreground: #1A1A1A;
+  --card: #FFFFFF;
+  --card-foreground: #1A1A1A;
+  --popover: #FFFFFF;
+  --popover-foreground: #1A1A1A;
+  --primary: #1A1A1A;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F5F5F5;
+  --secondary-foreground: #1A1A1A;
+  --muted: #F5F5F5;
+  --muted-foreground: #777777;
+  --accent: #1A1A1A;
+  --accent-foreground: #FFFFFF;
+  --destructive: #DC2626;
+  --border: #DDDDDD;
+  --input: #DDDDDD;
+  --ring: #AAA;
+  --chart-1: #4EAADC;
+  --chart-2: #3B82F6;
+  --chart-3: #8B5CF6;
+  --chart-4: #10B981;
+  --chart-5: #F59E0B;
+  --sidebar: #F0F0F0;
+  --sidebar-foreground: #1A1A1A;
+  --sidebar-primary: #1A1A1A;
+  --sidebar-primary-foreground: #F0F0F0;
+  --sidebar-accent: #E8E8E8;
+  --sidebar-accent-foreground: #1A1A1A;
+  --sidebar-border: #DDDDDD;
+  --sidebar-ring: #AAA;
+  --active: #4EAADC;
+
+  --surface-0: #FFFFFF;
+  --surface-1: #F5F5F5;
+  --surface-2: #FFFFFF;
+  --surface-3: #F5F5F5;
+  --surface-4: #EBEBEB;
+  --surface-5: #EEEEEE;
+  --surface-hover: #E0E0E0;
+  --border-subtle: #DDDDDD;
+  --border-default: #CCCCCC;
+  --border-hover: #AAA;
+  --text-primary: #1A1A1A;
+  --text-secondary: #333333;
+  --text-muted: #666666;
+  --text-faint: #777777;
+  --text-dim: #888888;
+  --text-ghost: #999999;
+  --text-inverse: #FFFFFF;
+  --btn-primary-bg: #1A1A1A;
+  --btn-primary-fg: #FFFFFF;
+  --btn-primary-hover: #000000;
+  --teal: #4EAADC;
+  /* Mode clair : tous les FONDS teintés en bleu utilisent exactement #D8F9FC
+     (couleur fournie par l'utilisateur). Le texte, les icônes et les bordures
+     gardent --teal / --teal-subtle-border pour rester lisibles. */
+  --teal-bg: #D8F9FC;
+  --teal-subtle: #D8F9FC;
+  --blue-accent: #3B8AC4;
+  --red-subtle-bg: #FEF2F2;
+  --red-subtle-border: #FECACA;
+  --red-text: #DC2626;
+  --green-subtle-bg: #F0FDF4;
+  --green-subtle-border: #BBF7D0;
+  --green-text: #16a34a;
+  --teal-subtle-bg: #D8F9FC;
+  --teal-subtle-border: #A9D9F2;
+  --teal-inner: #D8F9FC;
+  --scrollbar-thumb: #CCCCCC;
+  --scrollbar-thumb-hover: #AAA;
+  --skeleton-bg: #EBEBEB;
+  --shimmer: rgba(0,0,0,0.03);
+  --cursor-color: #3B8AC4;
+  --overlay-bg: rgba(0,0,0,0.3);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-thumb-hover); }
+
+/* ===== iOS : empêcher le zoom auto sur les champs de saisie ===== */
+/* Safari iOS zoome automatiquement quand un input a une police < 16px et ne
+   dézoome jamais. On force 16px min sur mobile pour supprimer ce comportement. */
+@media (max-width: 768px) {
+  input,
+  textarea,
+  select,
+  [contenteditable="true"] {
+    font-size: 16px !important;
+  }
+}
+
+/* ===== TEXT SELECTION ===== */
+/* Sélection de texte en bleu clair / teal (couleur de marque) au lieu du bleu
+   vif par défaut du navigateur. */
+::selection {
+  background-color: #4EAADC !important; /* bleu "Home" de la marque */
+  color: #ffffff !important;
+}
+::-moz-selection {
+  background-color: #4EAADC !important;
+  color: #ffffff !important;
+}
+
+/* ===== BUTTONS ===== */
+.btn-primary {
+  @apply px-5 py-2.5 text-sm font-medium rounded-lg transition-all duration-200;
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-fg);
+}
+.btn-primary:hover {
+  background: var(--btn-primary-hover);
+}
+.btn-primary:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.btn-secondary {
+  @apply px-5 py-2.5 text-sm font-medium rounded-lg transition-all duration-200;
+  background: var(--secondary);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover {
+  background: var(--surface-4);
+  border-color: var(--border-hover);
+}
+
+.btn-ghost {
+  @apply px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200;
+  color: var(--muted-foreground);
+}
+.btn-ghost:hover {
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+/* ===== CARDS ===== */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  transition: all 0.15s ease;
+}
+.card:hover {
+  border-color: var(--border-hover);
+}
+.card-interactive {
+  cursor: pointer;
+}
+.card-interactive:hover {
+  border-color: var(--border-hover);
+  background: var(--surface-hover);
+}
+
+/* ===== TAB BUTTONS ===== */
+.tab-btn {
+  @apply px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+.tab-btn:hover {
+  color: var(--foreground);
+  background: var(--secondary);
+}
+.tab-btn.active {
+  color: var(--foreground);
+  background: var(--secondary);
+  border: 1px solid var(--border);
+}
+
+/* ===== INPUT FIELDS ===== */
+.input-field {
+  @apply w-full px-4 py-3 text-sm rounded-lg transition-all duration-200;
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  color: var(--foreground);
+}
+.input-field:focus {
+  outline: none;
+  border-color: var(--text-ghost);
+}
+.input-field::placeholder {
+  color: var(--text-ghost);
+}
+
+/* ===== STATUS DOTS ===== */
+.status-dot {
+  @apply w-2 h-2 rounded-full;
+}
+.status-dot.live {
+  background: #4EAADC;
+  box-shadow: 0 0 6px rgba(78, 170, 220,0.4);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+.status-dot.running {
+  background: #E8E8E8;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+.status-dot.idle {
+  background: var(--text-ghost);
+}
+
+/* ===== LOADING ANIMATIONS ===== */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes typing-dot {
+  0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-3px); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes progress-indeterminate {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(400%); }
+}
+
+.animate-slide-up { animation: slide-up 0.3s ease forwards; }
+.animate-fade-in { animation: fade-in 0.4s ease forwards; }
+
+/* Apparition des popovers ancrés en bas (ex: sélecteur de modèle IA) */
+@keyframes popover-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-popover-in { animation: popover-in 0.22s cubic-bezier(0.22, 1, 0.36, 1) forwards; transform-origin: bottom right; }
+
+/* Fermeture des popovers ancrés en bas */
+@keyframes popover-out {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(6px) scale(0.96); }
+}
+.animate-popover-out { animation: popover-out 0.09s cubic-bezier(0.4, 0, 1, 1) forwards; transform-origin: bottom right; pointer-events: none; }
+
+/* Variantes pour les popovers ancrés en HAUT (qui s'ouvrent vers le bas) */
+@keyframes popover-in-down {
+  from { opacity: 0; transform: translateY(-10px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-popover-in-down { animation: popover-in-down 0.22s cubic-bezier(0.22, 1, 0.36, 1) forwards; transform-origin: top right; }
+
+@keyframes popover-out-down {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(-6px) scale(0.96); }
+}
+.animate-popover-out-down { animation: popover-out-down 0.09s cubic-bezier(0.4, 0, 1, 1) forwards; transform-origin: top right; pointer-events: none; }
+
+/* Bottom sheet mobile qui monte depuis le bas */
+@keyframes sheet-in {
+  from { opacity: 0.5; transform: translateY(100%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-sheet-in { animation: sheet-in 0.32s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+
+@keyframes sheet-out {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0.5; transform: translateY(100%); }
+}
+.animate-sheet-out { animation: sheet-out 0.15s cubic-bezier(0.4, 0, 1, 1) forwards; pointer-events: none; }
+@keyframes backdrop-out { from { opacity: 1; } to { opacity: 0; } }
+.animate-backdrop-out { animation: backdrop-out 0.15s ease forwards; }
+
+/* Typing indicator */
+.typing-dot {
+  @apply w-1.5 h-1.5 rounded-full;
+  background: var(--text-dim);
+  animation: typing-dot 1.4s ease-in-out infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* Progress bar */
+.progress-bar {
+  @apply h-1 rounded-full overflow-hidden;
+  background: var(--secondary);
+}
+.progress-bar-fill {
+  @apply h-full rounded-full transition-all duration-700 ease-out;
+  background: var(--btn-primary-bg);
+}
+
+/* Model badges */
+.model-badge {
+  @apply text-[10px] font-mono px-2 py-0.5 rounded font-medium;
+  background: var(--surface-4);
+  color: var(--text-muted);
+}
+
+/* Badge / pill */
+.badge {
+  @apply inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1 rounded-full;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted-foreground);
+}
+
+/* Skeleton loading */
+.skeleton {
+  @apply rounded;
+  background: var(--skeleton-bg);
+  position: relative;
+  overflow: hidden;
+}
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, var(--shimmer), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Role colors */
+.role-ceo { color: #E8E8E8; }
+.role-engineering { color: #3B82F6; }
+.role-marketing { color: #8B5CF6; }
+.role-support { color: #10B981; }
+.role-growth { color: #F59E0B; }
+
+/* ===== TOOL GROUP SHIMMER ===== */
+@keyframes an-tg-shimmer {
+  from { background-position: 100% center; }
+  to { background-position: 0% center; }
+}
+.an-tg-shimmer {
+  display: inline-block;
+  background-size: 250% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(90deg, #a3a3a3 0%, #a3a3a3 40%, #525252 50%, #a3a3a3 60%, #a3a3a3 100%);
+  background-repeat: no-repeat;
+  animation: an-tg-shimmer 1.2s linear infinite;
+}
+
+/* ===== THINKING SHIMMER — high-contrast sweep (dark -> white -> dark) ===== */
+/* Used while the AI is "thinking": the text colours itself from dark to white
+   and back as a light band sweeps across, giving a lively "reasoning" feel. */
+@keyframes an-think-shimmer {
+  from { background-position: 100% center; }
+  to { background-position: 0% center; }
+}
+.an-think-shimmer {
+  display: inline-block;
+  background-size: 220% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(
+    90deg,
+    #4b4b4b 0%,
+    #4b4b4b 35%,
+    #f5f5f5 50%,
+    #4b4b4b 65%,
+    #4b4b4b 100%
+  );
+  background-repeat: no-repeat;
+  animation: an-think-shimmer 1.8s linear infinite;
+}
+
+/* A thinking task row that fades/slides in as the AI lists what it is doing. */
+@keyframes an-think-task-in {
+  0% { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.an-think-task {
+  animation: an-think-task-in 0.32s ease-out both;
+}
+
+/* ===== BUILD STEP ANIMATION ===== */
+@keyframes build-step-enter {
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.build-step-enter {
+  animation: build-step-enter 0.4s ease-out forwards;
+}
+
+/* ── Live build step widget — sequential task animation ── */
+/* New step slides up from below and fades in */
+@keyframes step-in {
+  0%   { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0px); }
+}
+/* Completed step slides up and fades out */
+@keyframes step-push-up {
+  0%   { opacity: 1; transform: translateY(0px); }
+  100% { opacity: 0; transform: translateY(-24px); }
+}
+@keyframes step-reasoning-in {
+  0%   { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 0.55; transform: translateY(0); }
+}
+
+.build-live-step-enter {
+  animation: step-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.build-live-step-exit {
+  animation: step-push-up 0.35s cubic-bezier(0.4, 0, 1, 1) forwards;
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+.build-live-reasoning-enter {
+  animation: step-reasoning-in 0.5s ease 0.15s forwards;
+  opacity: 0;
+}
+
+/* Reasoning fade in */
+@keyframes reasoning-fade {
+  0% { opacity: 0; transform: translateX(-4px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+.reasoning-fade-in {
+  animation: reasoning-fade 0.6s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+/* ===== AI WORKING BORDER ===== */
+.ai-working-border {
+  position: relative;
+  padding: 1px;
+  isolation: isolate;
+}
+
+.ai-border-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 0.75rem;
+  padding: 1px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ai-border-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 0.75rem;
+  border: 1px solid transparent;
+  background: linear-gradient(var(--angle, 0deg), #888888, #333, #888888, #333) border-box;
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  animation: rotate-border 3s linear infinite;
+}
+
+@keyframes rotate-border {
+  0% { --angle: 0deg; }
+  100% { --angle: 360deg; }
+}
+
+/* Fallback for browsers without @property */
+@supports not (background: paint(something)) {
+  .ai-border-glow::before {
+    animation: border-pulse 2s ease-in-out infinite;
+  }
+  @keyframes border-pulse {
+    0%, 100% { border-color: #88888840; box-shadow: 0 0 8px #88888820; }
+    50% { border-color: #888888; box-shadow: 0 0 16px #88888840; }
+  }
+  .ai-border-glow::before {
+    background: none;
+    mask: none;
+    -webkit-mask: none;
+    border: 1px solid #88888840;
+    animation: border-pulse 2s ease-in-out infinite;
+  }
+}
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* Working text pulse */
+@keyframes working-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.working-text-pulse {
+  animation: working-pulse 2s ease-in-out infinite;
+}
+
+/* ===== AGENT RUNNING INDICATOR ===== */
+.agent-running-container {
+  animation: agent-running-fade-in 0.4s ease-out;
+}
+
+@keyframes agent-running-fade-in {
+  0% { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.agent-running-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #9AE65C;
+  box-shadow: 0 0 8px #9AE65C80;
+  animation: agent-dot-pulse 1.5s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes agent-dot-pulse {
+  0%, 100% { box-shadow: 0 0 6px #9AE65C60; }
+  50% { box-shadow: 0 0 14px #9AE65CA0; }
+}
+
+.agent-running-dots {
+  animation: agent-dots-pulse 1.2s ease-in-out infinite;
+  letter-spacing: 2px;
+}
+
+@keyframes agent-dots-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+
+/* ===== VELBAZ ICON ANIMATIONS ===== */
+
+/* Ring rotation (thinking/analyzing) */
+@keyframes ring-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+/* ─── Velbaz Icon Animations ─── */
+
+/* Arc active: energy pulse with scale */
+@keyframes arc-pulse {
+  0%   { transform: scale(1); opacity: 0.5; }
+  50%  { transform: scale(1.08); opacity: 0.9; }
+  100% { transform: scale(1); opacity: 0.5; }
+}
+.velbaz-arc-active {
+  animation: arc-pulse 1.4s ease-in-out infinite;
+}
+
+/* Arc done: flash and settle */
+@keyframes arc-flash {
+  0%   { transform: scale(0.8); opacity: 0; }
+  50%  { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.7; }
+}
+.velbaz-arc-done {
+  animation: arc-flash 0.5s ease-out forwards;
+}
+
+/* Spinning particles around the icon (thinking/analyzing) */
+@keyframes particle-orbit {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.velbaz-particle {
+  animation: particle-orbit 2s linear infinite;
+}
+
+/* Code brackets flash (coding) */
+@keyframes code-flash {
+  0%, 100% { opacity: 0.15; }
+  50%      { opacity: 0.5; }
+}
+.velbaz-code-flash {
+  animation: code-flash 1.5s ease-in-out infinite;
+}
+
+/* Checkmark draw (done) */
+@keyframes draw-check {
+  from { stroke-dashoffset: 24; opacity: 0; }
+  to   { stroke-dashoffset: 0; opacity: 1; }
+}
+.velbaz-check {
+  stroke-dasharray: 24;
+  animation: draw-check 0.4s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+/* Icon container */
+.velbaz-icon {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  transition: filter 0.3s ease;
+}
+
+/* Glow per active state — disabled, no glow */
+.velbaz-icon--thinking,
+.velbaz-icon--analyzing {
+  filter: none;
+}
+.velbaz-icon--coding {
+  filter: none;
+}
+.velbaz-icon--building,
+.velbaz-icon--designing {
+  filter: none;
+}
+.velbaz-icon--done {
+  filter: none;
+}
+
+/* Active states — letter animations handled in SVG, no container transforms */
+.velbaz-icon--thinking,
+.velbaz-icon--coding,
+.velbaz-icon--designing,
+.velbaz-icon--analyzing,
+.velbaz-icon--building {
+  /* no container animation — individual letters bounce via SVG animateTransform */
+}
+
+/* ─── Idea Mode Animations ─── */
+@keyframes idea-skeleton-shimmer {
+  0%   { opacity: 0.4; }
+  50%  { opacity: 0.7; }
+  100% { opacity: 0.4; }
+}
+.idea-skeleton-shimmer {
+  animation: idea-skeleton-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes idea-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.idea-fade-in {
+  animation: idea-fade-in 0.4s ease-out both;
+}
+
+.sidebar-projects-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+}
+.sidebar-projects-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Video section — visible in both themes */
+
+/* Video fade overlay — only in dark theme */
+.video-fade-overlay {
+  background: transparent;
+  display: none;
+}
+[data-theme="dark"] .video-fade-overlay {
+  display: block;
+  background: linear-gradient(to bottom, var(--surface-0) 0%, transparent 100%);
+}
+
+/* Mobile — fondu bas de la vidéo + remplissage sous la vidéo.
+   AVANT : #000 en dur, donc une grosse bande NOIRE en plein milieu de la page
+   en thème CLAIR sur téléphone. Maintenant la couleur suit le thème
+   (--surface-0 = #FFFFFF en clair). En SOMBRE on garde le noir pur d'origine
+   (--surface-0 sombre vaut #1A1A1A, ce qui laisserait un liseré gris). */
+.video-bottom-fade {
+  background: linear-gradient(to bottom, transparent 0%, var(--surface-0) 55%, var(--surface-0) 100%);
+}
+[data-theme="dark"] .video-bottom-fade {
+  background: linear-gradient(to bottom, transparent 0%, #000 55%, #000 100%);
+}
+.video-below-fill {
+  background: var(--surface-0);
+}
+[data-theme="dark"] .video-below-fill {
+  background: #000;
+}
+
+/* Chat history loader */
+.velbaz-loader {
+  width: 28px;
+  height: 28px;
+  border: 2.5px solid rgba(255,255,255,0.08);
+  border-top-color: #888;
+  border-radius: 50%;
+  animation: spin-slow 0.7s linear infinite;
+}
+
+/* ===== WEBSITE PREVIEW PANEL ===== */
+
+/* Preview panel slide-in */
+@keyframes preview-enter {
+  0% { opacity: 0; transform: translateX(28px) scale(0.985); }
+  60% { opacity: 1; }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+.preview-panel-enter {
+  animation: preview-enter 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transform-origin: right center;
+}
+
+/* [2026-09-13] L'animation de sortie du rectangle (`preview-exit`) a été
+   SUPPRIMÉE : le basculement rectangle ↔ barre « Context » est instantané. */
+
+/* Skeleton bar placeholders */
+.skeleton-bar {
+  background: var(--skeleton-bg);
+  position: relative;
+  overflow: hidden;
+}
+.skeleton-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, var(--shimmer) 50%, transparent 100%);
+  animation: skeleton-wave 1.8s ease-in-out infinite;
+}
+
+@keyframes skeleton-wave {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Full-panel shimmer sweep — diagonal sweep over the entire skeleton */
+.build-shimmer-sweep {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 2;
+}
+.build-shimmer-sweep::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(78, 170, 220, 0.03) 45%,
+    rgba(78, 170, 220, 0.06) 50%,
+    rgba(78, 170, 220, 0.03) 55%,
+    transparent 70%
+  );
+  animation: shimmer-sweep 3s ease-in-out infinite;
+}
+
+@keyframes shimmer-sweep {
+  0% { transform: translateX(-30%) translateY(-30%) rotate(-15deg); }
+  100% { transform: translateX(30%) translateY(30%) rotate(-15deg); }
+}
+
+/* Bouton « Open » de la carte de résultat de travail (chat) : contour discret
+   qui s'éclaire au survol, sans changer la taille du bouton. */
+.work-card-open {
+  background: transparent;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+.work-card-open:hover {
+  background: var(--surface-4);
+  border-color: var(--surface-5, var(--surface-4));
+}
+
+/* Preview loading glow — soft blurred glossy beams sweeping left → right,
+   staggered for depth, over a gently pulsing base. Used on the small chat
+   preview card and the large right-side preview panel while content is
+   loading / server is restarting. */
+.preview-loading-glow {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: linear-gradient(135deg, var(--surface-3), var(--surface-4), var(--surface-3));
+  background-size: 220% 220%;
+  animation: preview-bg-pulse 3.2s ease-in-out infinite;
+}
+.preview-loading-glow::before,
+.preview-loading-glow::after {
+  content: '';
+  position: absolute;
+  top: -80%;
+  left: -45%;
+  width: 32%;
+  height: 260%;
+  filter: blur(16px);
+  transform: rotate(16deg);
+  animation: preview-glow-sweep 2.3s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+}
+.preview-loading-glow::before {
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.4) 50%, transparent);
+}
+.preview-loading-glow::after {
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.16) 50%, transparent);
+  animation-delay: 0.22s;
+  filter: blur(24px);
+}
+@keyframes preview-glow-sweep {
+  0% { left: -45%; }
+  100% { left: 145%; }
+}
+@keyframes preview-bg-pulse {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Center status label */
+.build-center-status {
+  background: var(--surface-1);
+  border: 1px solid var(--border-subtle);
+  border-radius: 1rem;
+  padding: 1.5rem 2rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  z-index: 5;
+  animation: center-status-in 0.5s ease-out forwards;
+}
+
+@keyframes center-status-in {
+  0% { opacity: 0; transform: scale(0.9) translateY(10px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Page preview iframe entrance */
+.page-preview-enter {
+  animation: page-preview-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes page-preview-in {
+  0% { opacity: 0; transform: scale(0.97); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Groupe de plan (mois/année) repliable : animation SYMÉTRIQUE ouverture ET
+   fermeture. Technique CSS grid (grid-template-rows 0fr↔1fr) : la hauteur
+   s'anime en douceur dans les deux sens sans démonter le contenu ni mesurer en
+   JS. À l'ouverture il se déroule vers le bas, à la fermeture il se replie vers
+   le haut, avec un fondu. */
+.plan-collapsible {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 0.34s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.26s ease;
+}
+.plan-collapsible[data-open="true"] {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+.plan-collapsible > .plan-collapsible-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* Thumbnail entrance when a new page is built */
+.page-thumb-enter {
+  animation: page-thumb-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+@keyframes page-thumb-pop {
+  0% { opacity: 0; transform: scale(0.5) translateY(10px); }
+  50% { opacity: 1; transform: scale(1.1) translateY(-2px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Progress bar gradient */
+.build-progress-bar {
+  background: linear-gradient(90deg, var(--teal), var(--blue-accent));
+  position: relative;
+  overflow: hidden;
+}
+.build-progress-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  animation: progress-shine 2s ease-in-out infinite;
+}
+@keyframes progress-shine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+/* ===== RESIZE DRAG HANDLE ===== */
+.resize-handle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: col-resize;
+  flex-shrink: 0;
+  z-index: 10;
+}
+.resize-handle::before {
+  content: '';
+  width: 3px;
+  height: 48px;
+  border-radius: 3px;
+  background: var(--border-subtle);
+  transition: background 0.2s, height 0.2s;
+}
+.resize-handle:hover::before {
+  height: 64px;
+  background: var(--text-secondary);
+}
+/* Pendant le redimensionnement du rectangle de preview : l'iframe du site ne
+   capte plus le pointeur (sinon elle avale les événements et déclenche du hover
+   / scroll inutile à chaque frame) et plus aucune transition ne se joue sur les
+   deux panneaux — c'est ce qui rendait le scale saccadé. */
+body.resizing-preview iframe {
+  pointer-events: none !important;
+}
+body.resizing-preview {
+  cursor: col-resize;
+}
+
+/* Wide invisible hit area */
+.resize-handle::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -6px;
+  right: -6px;
+  cursor: col-resize;
+}
+
+/* Collapsed panel restore tab — flèche cliquable qui rouvre la preview */
+.preview-restore-tab {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  width: 26px;
+  height: 52px;
+  border-radius: 10px 0 0 10px;
+  background: var(--surface-3);
+  border: 1px solid var(--border-subtle);
+  border-right: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-dim);
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.preview-restore-tab:hover {
+  background: var(--surface-4);
+  border-color: var(--border-hover, var(--border-default));
+  color: var(--text-secondary);
+}
+/* Téléphone : rectangle plus grand, gris neutre, flèche → vers le plein écran */
+.preview-restore-tab--mobile {
+  width: 40px;
+  height: 72px;
+  border-radius: 14px 0 0 14px;
+  background: var(--surface-3);
+  border-color: var(--border-subtle);
+  color: var(--text-dim);
+  box-shadow: -2px 4px 16px rgba(0, 0, 0, 0.3);
+}
+.preview-restore-tab--mobile:hover {
+  background: var(--surface-4);
+  border-color: var(--border-hover, var(--border-default));
+  color: var(--text-secondary);
+}
+
+/* ─── Voice Input — full listening panel ─── */
+.voice-panel {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 20px 12px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--surface-1) 94%, transparent);
+  border: 1px solid var(--border-default);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 20;
+  animation: voice-panel-in 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@keyframes voice-panel-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(6px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.voice-panel-btn {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: transparent;
+  transition: background 0.18s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.voice-panel-btn:hover { background: color-mix(in srgb, var(--text-primary) 8%, transparent); }
+
+.voice-panel-square {
+  width: 24px;
+  height: 24px;
+  border-radius: 3px;
+  background: var(--text-primary);
+  animation: voice-square-spin 3s linear infinite;
+}
+@keyframes voice-square-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.voice-panel-time {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: color-mix(in srgb, var(--text-primary) 70%, transparent);
+}
+
+.voice-panel-vis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  height: 16px;
+  width: 100%;
+  max-width: 256px;
+}
+.voice-panel-bar {
+  width: 2px;
+  min-height: 4px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--text-primary) 50%, transparent);
+  transform-origin: center;
+  animation: voice-bar-pulse 1.2s ease-in-out infinite;
+  transition: height 0.3s ease;
+}
+@keyframes voice-bar-pulse {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
+}
+
+.voice-panel-label {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 500;
+  color: color-mix(in srgb, var(--text-primary) 70%, transparent);
+  letter-spacing: 0.01em;
+}
+
+.voice-mic-btn {
+  cursor: pointer;
+}
+.voice-mic-btn:hover {
+  background: var(--surface-5) !important;
+}
+.voice-mic-active {
+  animation: mic-glow 1.5s ease-in-out infinite;
+}
+.voice-mic-active:hover {
+  background: var(--text-primary) !important;
+  opacity: 0.9;
+}
+@keyframes mic-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.35); }
+  50% { box-shadow: 0 0 0 6px rgba(255, 255, 255, 0); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* ─── Question Popup ─── */
+@keyframes question-popup-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.question-popup-enter {
+  animation: question-popup-enter 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes question-popup-exit {
+  from { opacity: 1; transform: translateY(0); max-height: 60vh; }
+  to { opacity: 0; transform: translateY(-6px) scale(0.98); max-height: 0; }
+}
+.question-popup-exit {
+  animation: question-popup-exit 0.22s cubic-bezier(0.4, 0, 1, 1) forwards;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes floatchar {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
+  25%  { opacity: 1; transform: translate(-50%, -70%) scale(1.1); }
+  100% { opacity: 0; transform: translate(-50%, -160%) scale(0.8); }
+}
+.an-floatchar {
+  animation: floatchar 0.7s ease-out forwards;
+}
+
+/* ── Sélecteur de date style iPhone (CalendarView) ── */
+@keyframes cal-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes cal-pop-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+/* Roulettes : pas de barre de défilement visible (look iOS épuré) */
+.ios-wheel-col {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.ios-wheel-col::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* ── Panneau « Continuer une company » (home) ── */
+/* Fondu d'opacité SEULEMENT — pas de transform, pour ne pas casser le morph
+   de hauteur de la box (sinon ça "saute"). */
+@keyframes continue-panel-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.continue-panel-in { animation: continue-panel-in 0.34s ease both; }
+
+/* Fondu du contenu quand la box change de mode (le texte disparaît en douceur) */
+@keyframes mode-content-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.mode-content-in { animation: mode-content-in 0.34s ease both; }
+
+/* [2026-09-14] Styles de la « caméra live » (LiveCamera) supprimés avec le composant. */
+
+
+
+/* ── Highlight ("fluo marker") for AI-flagged important text ──
+   A rounded-rect vivid background grows left→right over the phrase while a
+   contrasting-colored copy of the text is revealed in lockstep, so the covered
+   text always stays readable. --hl-bg / --hl-fg are set inline per instance. */
+.mib-hl {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  font-weight: 600;
+  vertical-align: baseline;
+}
+.mib-hl-base {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  padding: 0.06em 0.4em;
+  color: inherit;
+}
+.mib-hl-rect {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: 0.45em;
+  background: var(--hl-bg);
+  box-shadow: 0 0 0.7em -0.15em var(--hl-bg);
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: mib-hl-grow 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  pointer-events: none;
+}
+.mib-hl-top {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  padding: 0.06em 0.4em;
+  color: var(--hl-fg);
+  white-space: nowrap;
+  clip-path: inset(0 100% 0 0);
+  animation: mib-hl-reveal 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  pointer-events: none;
+}
+@keyframes mib-hl-grow {
+  to { transform: scaleX(1); }
+}
+@keyframes mib-hl-reveal {
+  to { clip-path: inset(0 0 0 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mib-hl-rect { animation: none; transform: scaleX(1); }
+  .mib-hl-top { animation: none; clip-path: inset(0 0 0 0); }
+}
+
+/* Modale centrée du sélecteur de langue (réglages) */
+@keyframes lang-dialog-in {
+  from { opacity: 0; transform: translateY(12px) scale(0.94); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-lang-dialog-in { animation: lang-dialog-in 0.22s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+
+@keyframes lang-dialog-out {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(8px) scale(0.96); }
+}
+.animate-lang-dialog-out { animation: lang-dialog-out 0.15s cubic-bezier(0.4, 0, 1, 1) forwards; pointer-events: none; }
+
+@keyframes backdrop-in { from { opacity: 0; } to { opacity: 1; } }
+.animate-backdrop-in { animation: backdrop-in 0.18s ease forwards; }
+
+/* Entrée décalée des lignes de la liste de langues */
+@keyframes lang-row-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-lang-row-in { animation: lang-row-in 0.26s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* Menu de langue ancré sous son bouton (réglages) */
+@keyframes lang-pop-in {
+  from { opacity: 0; transform: translateY(-6px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-lang-pop-in { animation: lang-pop-in 0.18s cubic-bezier(0.22, 1, 0.36, 1) forwards; transform-origin: top center; }
+
+@keyframes lang-pop-out {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(-4px) scale(0.98); }
+}
+.animate-lang-pop-out { animation: lang-pop-out 0.13s cubic-bezier(0.4, 0, 1, 1) forwards; transform-origin: top center; pointer-events: none; }
+
+/* Anneau de l'écran d'erreur : respiration lente, monochrome */
+@keyframes error-pulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.04); }
+}
+.animate-error-pulse { animation: error-pulse 2.6s ease-in-out infinite; }
+
+/* Notifications admin empilées (components/AdminNotice.tsx) : arrivée en fondu. */
+@keyframes notice-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Aperçu éditable d'un document du chat (components/DocPreviewPane.tsx) ───
+   Le contenu est du HTML produit à partir du Markdown (lib/doc-markdown.ts) et
+   directement éditable : il lui faut donc une vraie mise en forme de document
+   (les styles globaux de l'app ne stylent pas h1/p/table dans un contentEditable). */
+/* [2026-09-14] Demande utilisateur : « quand le texte est grand je dois
+   scroller de gauche a droite et je veux pas ca ». Tout passe donc a la ligne :
+   paragraphes, longues URL, blocs de code, cellules de tableau. Le panneau ne
+   defile plus que verticalement. */
+.doc-preview-body {
+  max-width: min(820px, 100%);
+  margin: 0 auto;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.doc-preview-body * { max-width: 100%; }
+.doc-preview-body > *:first-child { margin-top: 0; }
+.doc-preview-body h1,
+.doc-preview-body h2,
+.doc-preview-body h3,
+.doc-preview-body h4,
+.doc-preview-body h5,
+.doc-preview-body h6 {
+  color: var(--text-primary);
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 1.5em 0 0.5em;
+}
+.doc-preview-body h1 { font-size: 1.85em; letter-spacing: -0.01em; }
+.doc-preview-body h2 { font-size: 1.45em; padding-bottom: 0.25em; border-bottom: 1px solid var(--border-subtle); }
+.doc-preview-body h3 { font-size: 1.2em; }
+.doc-preview-body h4 { font-size: 1.05em; }
+.doc-preview-body h5,
+.doc-preview-body h6 { font-size: 1em; color: var(--text-secondary); }
+.doc-preview-body p { margin: 0.75em 0; }
+.doc-preview-body strong { font-weight: 700; color: var(--text-primary); }
+.doc-preview-body em { font-style: italic; }
+.doc-preview-body a { color: var(--blue-accent); text-decoration: underline; text-underline-offset: 2px; }
+.doc-preview-body ul,
+.doc-preview-body ol { margin: 0.7em 0; padding-left: 1.5em; }
+.doc-preview-body ul { list-style: disc; }
+.doc-preview-body ol { list-style: decimal; }
+.doc-preview-body li { margin: 0.28em 0; }
+.doc-preview-body li::marker { color: var(--text-tertiary, #888); }
+.doc-preview-body blockquote {
+  margin: 0.9em 0;
+  padding: 0.35em 0 0.35em 0.9em;
+  border-left: 3px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+.doc-preview-body hr { margin: 1.6em 0; border: none; border-top: 1px solid var(--border-subtle); }
+.doc-preview-body code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.88em;
+  padding: 0.12em 0.35em;
+  border-radius: 5px;
+  background: var(--surface-3);  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.doc-preview-body pre {
+  margin: 0.9em 0;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--surface-3);
+  border: 1px solid var(--border-subtle);
+  /* Les lignes longues passent a la ligne au lieu de creer un defilement
+     horizontal (demande utilisateur du 2026-09-14). */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  overflow-x: hidden;
+}
+.doc-preview-body pre code { background: none; padding: 0; font-size: 0.85em; }
+.doc-preview-body table {
+  width: 100%;
+  margin: 1em 0;
+  border-collapse: collapse;
+  font-size: 0.94em;
+  /* Colonnes contraintes a la largeur du panneau : le contenu passe a la
+     ligne dans la cellule, le tableau ne deborde jamais a droite. */
+  table-layout: fixed;
+}
+.doc-preview-body th,
+.doc-preview-body td {
+  padding: 7px 10px;
+  border: 1px solid var(--border-subtle);
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.doc-preview-body th { background: var(--surface-3); font-weight: 700; color: var(--text-primary); }
+.doc-preview-body img { max-width: 100%; border-radius: 8px; }
+
+/* Barre du haut de l'apercu document : sur ordinateur, le bouton flottant
+   « Ouvrir le panneau » (position absolue, top 12 / right 12) passe par-dessus
+   le coin haut droit du panneau. On lui reserve la place pour que le bouton
+   Fermer de l'apercu reste cliquable. */
+.doc-preview-topbar { padding-right: 10px; }
+@media (min-width: 769px) {
+  .doc-preview-topbar { padding-right: 56px; }
+}
+
+/* ─── Barre de titre du rectangle de preview (site / app / code / commandes) ───
+   [2026-09-10] Le rectangle ne monte plus jusqu'en haut : sommets arrondis
+   moderes, et cette barre porte le titre de ce qui est affiche + la fleche
+   d'elargissement. Meme reserve a droite que la barre de l'apercu document. */
+.preview-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--surface-2);
+  flex-shrink: 0;
+}
+@media (min-width: 769px) {
+  .preview-titlebar { padding-right: 56px; }
+}
+.preview-titlebar-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Groupe d'actions a droite de la barre de titre : Publish + croix de fermeture. */
+.preview-titlebar-actions {
+  margin-left: auto;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Croix « fermer l'apercu » — meme gabarit que la fleche d'elargissement. */
+.preview-close-btn {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
+  border: 1px solid var(--border-subtle);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.preview-close-btn:hover {
+  background: var(--surface-3);
+  color: var(--text-primary);
+}
+
+/* ─── Nouvelle barre du haut du rectangle d'apercu (maquette 2026-09-13) ─────
+   Une seule barre : «  [Preview|Dashboard]  epingle   (appareil | chemin  ↻ ↗)
+   …  github  Edit  Publish  ✕. Les composants sont dans PreviewTopBar.tsx.
+   Ne pas revenir a l'ancienne barre (titre + Publish + croix) sans demande. */
+.preview-tb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 44px;
+  padding: 0 10px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+@media (min-width: 769px) {
+  /* Le bouton flottant « ouvrir le panneau » passe au-dessus du coin haut droit. */
+  .preview-tb { padding-right: 52px; }
+}
+.preview-tb-title {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 160px;
+}
+.preview-tb-icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.preview-tb-icon:hover:not(:disabled) { background: var(--surface-4); color: var(--text-primary); }
+.preview-tb-icon--on { background: var(--surface-4); color: var(--text-primary); }
+
+/* Segment Preview | Dashboard */
+.preview-tb-seg {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  border-radius: 10px;
+  background: var(--surface-1);
+}
+.preview-tb-seg button {
+  height: 24px;
+  padding: 0 10px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.preview-tb-seg button:hover { color: var(--text-primary); }
+.preview-tb-seg button[data-on='true'] { background: var(--surface-4); color: var(--text-primary); }
+/* [2026-09-14] Dernier recours quand le rectangle est vraiment etroit : le
+   segment est le seul element qui accepte de se comprimer, et il tronque
+   proprement, pour que Publish et la croix restent DANS le rectangle. */
+.preview-tb-seg--sq { flex: 0 1 auto; min-width: 0; overflow: hidden; }
+.preview-tb-seg--sq button { min-width: 0; padding: 0 7px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+
+/* Zone centrale : la pilule navigateur est centree dans la barre. */
+.preview-tb-center {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+}
+.preview-tb-url {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 30px;
+  padding: 2px 4px;
+  border-radius: 999px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-subtle);
+  /* [2026-09-14] PLANCHER : la pilule ne se laisse plus ecraser (ses icones ne
+     se compriment pas, elles debordaient et se collaient entre elles). Sous
+     cette largeur, PreviewTopBar.tsx l'efface tout simplement. */
+  min-width: 112px;
+  width: 300px;
+  max-width: 100%;
+}
+/* Pilule sans le selecteur d'appareil (telephone) : plancher plus bas. */
+.preview-tb-url--nodev { min-width: 84px; }
+.preview-tb-sq {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
+  border: none;
+  background: var(--surface-4);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.preview-tb-sq:hover, .preview-tb-sq--on { background: var(--surface-5, var(--surface-4)); color: var(--text-primary); }
+.preview-tb-path {
+  flex: 1;
+  min-width: 0;
+  padding: 0 6px;
+  border: none;
+  background: none;
+  color: var(--text-dim);
+  font-size: 11.5px;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.preview-tb-path:hover { color: var(--text-secondary); }
+.preview-tb-mini {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  color: var(--text-dim);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.preview-tb-mini:hover { background: var(--surface-4); color: var(--text-primary); }
+/* [2026-09-14] Simple enveloppe de mesure pour equipe + GitHub : ils
+   s'effacent ensemble quand le groupe de droite n'a plus la place. Aucun
+   effet visuel (meme alignement, meme gouttiere). */
+.preview-tb-slots { display: inline-flex; align-items: center; gap: 6px; }
+
+/* Menus deroulants de la barre (appareil, pages) */
+.preview-tb-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 80;
+  min-width: 160px;
+  padding: 5px;
+  border-radius: 12px;
+  background: var(--surface-3, #2c2c30);
+  border: 1px solid var(--border-default);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.preview-tb-menu--pages { max-height: 260px; overflow-y: auto; min-width: 200px; }
+.preview-tb-menu button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  padding: 7px 9px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 12.5px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+.preview-tb-menu button:hover { background: var(--surface-4); color: var(--text-primary); }
+.preview-tb-menu button[data-on='true'] { background: var(--surface-4); color: var(--text-primary); }
+
+/* Groupe de droite */
+.preview-tb-right {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.preview-tb-edit {
+  height: 28px;
+  padding: 0 11px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 9px;
+  border: 1px solid var(--border-subtle);
+  background: var(--surface-1);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.preview-tb-edit:hover { background: var(--surface-4); color: var(--text-primary); }
+.preview-tb-publish {
+  height: 28px;
+  padding: 0 14px;
+  border-radius: 9px;
+  border: none;
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-fg);
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+.preview-tb-publish:hover { opacity: 0.88; }
+/* ── Mode « Edit » visuel de l'apercu (2026-09-13) ──────────────────────────
+   Bouton actif = Exit edit, bandeau d'aide, et bulle de prompt ancree sur
+   l'element clique dans l'iframe. Logique : lib/edit-picker.ts. */
+/* [2026-09-13] Etat actif en BLEU (demande utilisateur). */
+.preview-tb-edit[data-on='true'] {
+  background: #2f7dff;
+  border-color: #2f7dff;
+  color: #fff;
+}
+.preview-tb-edit[data-on='true']:hover { background: #1f6ced; color: #fff; }
+.preview-tb-edit:disabled { opacity: 0.4; cursor: default; }
+
+.preview-edit-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  z-index: 40;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(16, 17, 20, 0.88);
+  border: 1px solid rgba(47, 125, 255, 0.38);
+  color: #e8e8ea;
+  font-size: 11.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+}
+.preview-edit-dot {
+  width: 7px; height: 7px; border-radius: 999px;
+  background: #2f7dff;
+  box-shadow: 0 0 0 3px rgba(47, 125, 255, 0.22);
+  animation: preview-edit-pulse 1.6s ease-in-out infinite;
+}
+@keyframes preview-edit-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+/* [2026-09-13] Bulle du mode Edit — MINIMALE et NEUTRE : aucune lueur
+   bleue, aucun contour bleu, aucune ombre a l'interieur de la bulle.
+   Le bleu reste ailleurs (bouton Edit, surlignage de l'element, bouton
+   d'envoi plein) mais jamais en halo. Demande utilisateur.
+   La popup ne contient QUE la zone d'écriture : pas de titre, pas de pied,
+   pas de boutons annexes. Raccourcis : ⏎ envoie, Échap annule,
+   ⌘/Ctrl+↑ élargit la sélection au bloc parent. */
+.preview-edit-pop {
+  position: absolute;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 7px;
+  border-radius: 13px;
+  background: #14161c;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: none;
+  animation: preview-edit-in 0.13s ease-out;
+}
+@keyframes preview-edit-in {
+  from { opacity: 0; transform: translateY(-3px); }
+  to { opacity: 1; transform: none; }
+}
+.preview-edit-pop-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 7px;
+}
+.preview-edit-pop-input {
+  flex: 1;
+  min-width: 0;
+  min-height: 58px;
+  resize: none;
+  padding: 8px 9px;
+  border-radius: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: #0d0f14;
+  color: #f2f2f4;
+  font-size: 12.5px;
+  line-height: 1.45;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.14s, box-shadow 0.14s;
+}
+.preview-edit-pop-input:focus {
+  border-color: rgba(255, 255, 255, 0.26);
+  box-shadow: none;
+}
+.preview-edit-pop-input::placeholder { color: #6d707c; }
+.preview-edit-pop-send {
+  flex-shrink: 0;
+  width: 30px; height: 30px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 9px;
+  border: none;
+  background: #2f7dff;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.13s, opacity 0.13s;
+}
+.preview-edit-pop-send:hover { background: #1f6ced; }
+.preview-edit-pop-send:disabled { opacity: 0.35; cursor: default; background: #2f7dff; }
+.preview-edit-pop-err {
+  padding: 5px 8px;
+  border-radius: 8px;
+  background: rgba(230, 70, 70, 0.12);
+  border: 1px solid rgba(230, 70, 70, 0.3);
+  color: #ffa7a7;
+  font-size: 11px;
+  line-height: 1.4;
+}
+.preview-edit-pop-busy {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 4px 4px 4px 5px;
+  font-size: 12px;
+  color: #d6d6da;
+}
+.preview-edit-pop-busy span:last-child {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.preview-edit-spin {
+  flex-shrink: 0;
+  width: 13px; height: 13px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  border-top-color: #e8e8ec;
+  animation: preview-edit-spin 0.7s linear infinite;
+}
+@keyframes preview-edit-spin { to { transform: rotate(360deg); } }
+
+/* Bouton « Publish » — colle a droite de la barre de titre du rectangle. */
+.preview-publish-btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 11px;
+  border-radius: 7px;
+  border: none;
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-fg);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+.preview-publish-btn:hover { opacity: 0.88; }
+
+/* ─── Bouton « Next » — collé dans le coin bas-droit de l'aperçu ─────────────
+   [2026-09-13] Retour utilisateur final : aucun arrondi. On revient donc au
+   bouton simple, d'angles droits, posé dans le coin. Les essais d'arrondis
+   concaves (conges en ::before/::after raccordant le bouton aux bords) ont été
+   refusés — ne pas les réintroduire sans demande explicite. */
+.preview-next-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 18px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-fg);
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+.preview-next-btn:hover { opacity: 0.88; }
+
+
+/* Fleche « prendre toute la largeur du chat » */
+.preview-wide-btn {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
+  border: 1px solid var(--border-subtle);
+  background: var(--surface-1);
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.preview-wide-btn:hover {
+  background: var(--surface-3);
+  border-color: var(--border-hover, var(--border-default));
+  color: var(--text-primary);
+}
+
+/* ─── Dashboard du projet (bouton « Dashboard » de la barre du site) ─────────
+   [2026-09-13] Demande : « Preview, Code et le reste pour le site dans le
+   Dashboard ». Colonne de navigation a gauche + contenu a droite, DANS la zone
+   de contenu (pas une deuxieme barre d'outils). Voir ProjectDashboard.tsx. */
+.pdash {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  /* Le rectangle parent est un bloc (position: relative) : sans hauteur
+     explicite, le dashboard se réduirait à la taille de son contenu. */
+  height: 100%;
+  display: flex;
+  background: var(--surface-0, #0b0b0d);
+}
+.pdash-nav {
+  flex-shrink: 0;
+  width: 168px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 8px;
+  border-right: 1px solid var(--border-subtle);
+  overflow-y: auto;
+}
+.pdash-sep {
+  height: 1px;
+  margin: 6px 6px;
+  background: var(--border-subtle);
+}
+.pdash-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  padding: 7px 10px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 12.5px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.pdash-item:hover { background: var(--surface-2); color: var(--text-primary); }
+.pdash-item[data-on='true'] {
+  background: var(--surface-4);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.pdash-ico { display: flex; flex-shrink: 0; opacity: 0.85; }
+.pdash-out { margin-left: auto; opacity: 0.5; }
+.pdash-body {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  overflow: auto;
+}
+/* [2026-09-13] Les panneaux posés ici (Code, Commandes) se dimensionnent sur
+   leur contenu s'ils sont laissés en flex-basis auto : ils s'affichaient tout
+   petits au lieu de remplir le rectangle. On les étire donc explicitement. */
+.pdash-body > * {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+}
+/* Sections legeres (Appareil, Equipe) : des cartes dans le corps. */
+.pdash-card {
+  align-self: flex-start;
+  margin: 14px;
+  width: 100%;
+  max-width: 520px;
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-subtle);
+}
+.pdash-card-title { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+.pdash-card-hint { margin-top: 4px; font-size: 11.5px; line-height: 1.45; color: var(--text-ghost); }
+.pdash-seg { display: flex; gap: 8px; }
+.pdash-seg button {
+  flex: 1;
+  padding: 9px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--text-dim);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.pdash-seg button:hover { color: var(--text-primary); }
+.pdash-seg button[data-on='true'] {
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-fg);
+  border-color: transparent;
+}
+
+/* ── [2026-09-15] Toasts (components/ToastHost.tsx) ──────────────────────────
+   En bas au centre, au-dessus de tout (l'aperçu plein écran sur téléphone est
+   en z-index 60). La pile ne capte aucun clic ; seuls les toasts le font, pour
+   pouvoir être écartés d'un clic. */
+.toast-stack {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+  max-width: min(92vw, 420px);
+}
+.toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+  padding: 9px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: var(--surface-2);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+  animation: toast-in 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.toast-icon { display: inline-flex; flex-shrink: 0; }
+.toast-text { min-width: 0; overflow-wrap: anywhere; }
+.toast--success .toast-icon { color: #22c55e; }
+.toast--error { border-color: rgba(239, 68, 68, 0.45); }
+.toast--error .toast-icon { color: #ef4444; }
+.toast--info .toast-icon { color: var(--text-dim); }
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── [2026-09-15] Bouton « revenir en bas » du chat ──────────────────────────
+   L'auto-défilement ne s'active que si l'utilisateur est déjà proche du bas
+   (voir handleMessagesScroll dans pages/chat.tsx). Quand il remonte lire un
+   message pendant que l'IA écrit, plus rien ne bouge et RIEN ne le signalait :
+   cette pastille est le seul indicateur, et le chemin du retour. */
+/* Rond simple avec deux chevrons — aucun texte : l'icône suffit, et un pavé de
+   texte flottant au-dessus de la conversation masquait les messages. */
+.chat-jump {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: var(--surface-2);
+  color: var(--text-dim);
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.26);
+  animation: toast-in 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+.chat-jump:hover {
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+  transform: translateX(-50%) translateY(1px);
+}
+/* [2026-09-15] La pastille bleue en haut à droite du rond est retirée : elle
+   attirait l'œil hors de la conversation pour une information que le rond
+   porte déjà (il n'apparaît que si on est remonté). L'arrivée de contenu reste
+   annoncée par le title/aria-label du bouton, sans tache de couleur. */
+
+/* ── [2026-09-15] Easter egg : secousse du téléphone ─────────────────────────
+   Trois secousses franches de l'appareil pendant l'aperçu → le rectangle
+   « tombe » brièvement puis se remet. Voir lib/useShake.ts. */
+.preview-shake { animation: preview-shake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97); }
+@keyframes preview-shake {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  15% { transform: translate3d(-8px, 4px, 0) rotate(-1.2deg); }
+  30% { transform: translate3d(7px, -3px, 0) rotate(1deg); }
+  45% { transform: translate3d(-6px, 5px, 0) rotate(-0.8deg); }
+  60% { transform: translate3d(5px, -2px, 0) rotate(0.6deg); }
+  75% { transform: translate3d(-3px, 2px, 0) rotate(-0.3deg); }
+  100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast { animation: none; }
+  .chat-jump { animation: none; }
+  .preview-shake { animation: none; }
+}

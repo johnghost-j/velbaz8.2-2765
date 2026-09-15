@@ -1,0 +1,5 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": { "noUnusedLocals": false, "noUnusedParameters": false, "tsBuildInfoFile": "./node_modules/.tmp/api.tsbuildinfo" },
+  "include": ["src/api"]
+}
